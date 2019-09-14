@@ -16,6 +16,7 @@ class ParkingLot:
 			slot = ParkingSlot(id=i+1)
 			self.availableSlots[i] = slot
 			self.allSlots = slot
+		print("Created a parking lot with {0} slots").format(maxNumberOfSlots)
 
 	def park(self, color, registrationNumber):
 		minSlotId = min(self.availableSlots.keys(), key=(lambda k: self.availableSlots[k]))
@@ -26,6 +27,7 @@ class ParkingLot:
 		ticket.assignTicket(car=car,slot=slot)
 		car.carGetsParked(ticket)
 		slot.parkCar(carParked=car)
+		print("Allocated slot number: {0}").format(slot.id)
 
 	def generateTicket(self):
 		ticket = Ticket(self.ticketId)
@@ -44,6 +46,13 @@ class ParkingLot:
 		slot.freeTheSlot()
 		car.carLeaves()
 		self.availableSlots[slot.id] = slot
+		print("Slot number {0} is free").format(slot.id)
+
+	def status(self):
+		print("Slot No.\tRegistration No\t\tColor")
+		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
+			print("{0}\t\t{1}\t\t\t{2}").format(ticket.slot.id, ticket.car.registrationNumber, ticket.car.color)
+
 
 	def  ticketsOfCarWithGivenColour(self, color):
 		listOfTickets = []
