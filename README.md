@@ -4,7 +4,7 @@ This project is the object-orient solution of the parking lot problem.
 
 The python version is 2.7
 
-execute main.py to simulate the parking action
+Use "python main.py" to simulate the parking action
 
 The description of the problem is as follows:
 
