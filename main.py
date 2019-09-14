@@ -20,18 +20,24 @@ def main(argv=None):
 	while(1):
 		inputByUser = raw_input()
 		command = inputByUser.split(' ')
-		if command[0] == "create_parking_lot":
+		if command[0] == "create_parking_lot" and len(command) == 2:
 			parkinglot = ParkingLot(int(command[1]))
-		elif command[0] == "park":
+		elif command[0] == "park" and len(command) == 3:
 			try:
 				parkinglot.park(color=command[2], registrationNumber=command[1])
 			except Exception as e:
 				exceptionOccurred(exception=e)
-		elif command[0] == "status":
+		elif command[0] == "status" and len(command) == 1:
 			parkinglot.status()
-		elif command[0] == "leave":
-			parkinglot.leave(command[1])
-		elif command[0] == "exit":
+		elif command[0] == "leave" and len(command) == 2:
+			parkinglot.leave(int(command[1]))
+		elif command[0] == "slot_numbers_for_cars_with_colour" and len(command) == 2:
+			parkinglot.slotNumbersOfCarWithGivenColour(command[1])
+		elif command[0] == "registration_numbers_for_cars_with_colour" and len(command) == 2:
+			parkinglot.registrationNumbersOfCarWithGivenColour(command[1])
+		elif command[0] == "slot_number_for_registration_number" and len(command) == 2:
+			parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
+		elif command[0] == "exit" and len(command) == 1:
 			exit(0)
 		else:
 			printHelp()

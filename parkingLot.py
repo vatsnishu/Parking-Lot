@@ -19,6 +19,9 @@ class ParkingLot:
 		print("Created a parking lot with {0} slots").format(maxNumberOfSlots)
 
 	def park(self, color, registrationNumber):
+		if(len(self.availableSlots) == 0):
+			print("Sorry, parking lot is full")
+			return
 		minSlotId = min(self.availableSlots.keys(), key=(lambda k: self.availableSlots[k]))
 		slot = self.availableSlots[minSlotId]
 		del self.availableSlots[minSlotId]
@@ -40,6 +43,9 @@ class ParkingLot:
 
 	def leave(self, ticketId):
 		ticket = self.tickets[ticketId]
+		if ticket is None:
+			print("Ticket ID is invalid")
+			return
 		car = ticket.car
 		slot = ticket.slot
 		self.revokeTicket(ticket.id)
@@ -49,22 +55,55 @@ class ParkingLot:
 		print("Slot number {0} is free").format(slot.id)
 
 	def status(self):
-		print("Slot No.\tRegistration No\t\tColor")
+		print("Slot No.\tRegistration No\t\tColour")
 		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
-			print("{0}\t\t{1}\t\t\t{2}").format(ticket.slot.id, ticket.car.registrationNumber, ticket.car.color)
+			print("{0}\t\t{1}\t\t{2}").format(ticket.slot.id, ticket.car.registrationNumber, ticket.car.color)
 
 
-	def  ticketsOfCarWithGivenColour(self, color):
+	def  ticketNumbersOfCarWithGivenColour(self, color):
 		listOfTickets = []
-		for ticket in self.tickets:
+		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
 			if ticket.car.color == color:
 				listOfTickets.append(ticket)
+		return listOfTickets
 
-	def  ticketsOfCarWithGivenRegistrationNumber(self, registrationNumber):
-		listOfTickets = []
-		for ticket in self.tickets:
+
+	def slotNumbersOfCarWithGivenColour(self, color):
+		listOfTickets = self.ticketNumbersOfCarWithGivenColour(color)
+		resultString = ""
+		if(len(listOfTickets) == 0):
+			print("Not found")
+			return
+		i=0
+		for ticket in sorted(listOfTickets):
+			if(i!=0):
+				resultString += ", "
+			i+=1
+			resultString += str(ticket.slot.id)
+		print(resultString)
+
+	def registrationNumbersOfCarWithGivenColour(self, color):
+		listOfTickets = self.ticketNumbersOfCarWithGivenColour(color)
+		resultString = ""
+		if(len(listOfTickets) == 0):
+			print("Not found")
+			return
+		i=0
+		for ticket in listOfTickets:
+			if(i!=0):
+				resultString += ", "
+			resultString += ticket.car.registrationNumber
+			i+=1
+		print(resultString)
+
+	def  slotNumberCarWithGivenRegistrationNumber(self, registrationNumber):
+		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
 			if ticket.car.registrationNumber == registrationNumber:
-				listOfTickets.append(ticket)			
+				print(ticket.slot.id)
+				return		
+		print("Not found")
+		return
+
 
 
 
