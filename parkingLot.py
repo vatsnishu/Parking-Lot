@@ -54,9 +54,9 @@ class ParkingLot:
 		print("Slot number {0} is free").format(slot.id)
 
 	def status(self):
-		print("Slot No.\tRegistration No\t\tColour")
+		print("Slot No.    Registration No    Colour")
 		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
-			print("{0}\t\t{1}\t\t{2}").format(ticket.slot.id, ticket.car.registrationNumber, ticket.car.color)
+			print("{0}           {1}      {2}").format(ticket.slot.id, ticket.car.registrationNumber, ticket.car.color)
 
 
 	def  ticketNumbersOfCarWithGivenColour(self, color):
