@@ -1,9 +1,13 @@
 #!/usr/bin/python
 
+import sys
+
 from parkingLot import ParkingLot
 
 def main(argv=None):
-	parkinglot = ParkingLot(8)
+	if argv is None:
+		argv = sys.argv
+	parkinglot = ParkingLot(int(argv[1]))
 
 
 
