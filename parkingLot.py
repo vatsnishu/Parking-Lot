@@ -14,8 +14,7 @@ class ParkingLot:
 		self.ticketId = 1
 		for i in range(maxNumberOfSlots):
 			slot = ParkingSlot(id=i+1)
-			self.availableSlots[i] = slot
-			self.allSlots = slot
+			self.availableSlots[i+1] = slot
 		print("Created a parking lot with {0} slots").format(maxNumberOfSlots)
 
 	def park(self, color, registrationNumber):
@@ -72,37 +71,33 @@ class ParkingLot:
 		listOfTickets = self.ticketNumbersOfCarWithGivenColour(color)
 		resultString = ""
 		if(len(listOfTickets) == 0):
-			print("Not found")
-			return
+			return None
 		i=0
 		for ticket in sorted(listOfTickets):
 			if(i!=0):
 				resultString += ", "
 			i+=1
 			resultString += str(ticket.slot.id)
-		print(resultString)
+		return resultString
 
 	def registrationNumbersOfCarWithGivenColour(self, color):
 		listOfTickets = self.ticketNumbersOfCarWithGivenColour(color)
 		resultString = ""
 		if(len(listOfTickets) == 0):
-			print("Not found")
-			return
+			return None
 		i=0
 		for ticket in listOfTickets:
 			if(i!=0):
 				resultString += ", "
 			resultString += ticket.car.registrationNumber
 			i+=1
-		print(resultString)
+		return resultString
 
 	def  slotNumberCarWithGivenRegistrationNumber(self, registrationNumber):
 		for ticket in sorted(self.tickets.values(), key = lambda x : x.slot.id):
 			if ticket.car.registrationNumber == registrationNumber:
-				print(ticket.slot.id)
-				return		
-		print("Not found")
-		return
+				return 	ticket.slot.id
+		return None
 
 
 

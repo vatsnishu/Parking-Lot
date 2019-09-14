@@ -13,11 +13,12 @@ def exceptionOccurred(exception=None):
 
 def printHelp():
 	helpString = "\nPlease enter commands in following form:\ncreate_parking_lot $numberOfParkingSlots\npark $carNumber $carColor\nleave $parkingTicketNumber\nstatus\nregistration_numbers_for_cars_with_colour $color\nslot_numbers_for_cars_with_colour $color\nexit"
-	print helpString
+	print(helpString)
 
 def main(argv=None):
 	# takes input from command line
 	if len(sys.argv) == 1:
+		parkinglot = None
 		while(1):
 			inputs = raw_input()
 			command = inputs.split(' ')
@@ -33,11 +34,23 @@ def main(argv=None):
 			elif command[0] == "leave" and len(command) == 2:
 				parkinglot.leave(int(command[1]))
 			elif command[0] == "slot_numbers_for_cars_with_colour" and len(command) == 2:
-				parkinglot.slotNumbersOfCarWithGivenColour(command[1])
+				resultString = parkinglot.slotNumbersOfCarWithGivenColour(command[1])
+				if resultString is None:
+					print("Not found")
+				else:
+					print(resultString)
 			elif command[0] == "registration_numbers_for_cars_with_colour" and len(command) == 2:
-				parkinglot.registrationNumbersOfCarWithGivenColour(command[1])
+				resultString = parkinglot.registrationNumbersOfCarWithGivenColour(command[1])
+				if resultString is None:
+					print("Not found")
+				else:
+					print(resultString)
 			elif command[0] == "slot_number_for_registration_number" and len(command) == 2:
-				parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
+				slotID = parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
+				if slotID is None:
+					print(slotID)
+				else:
+					print("Not found")
 			elif command[0] == "exit" and len(command) == 1:
 				exit(0)
 			else:
@@ -62,11 +75,23 @@ def main(argv=None):
 			elif command[0] == "leave" and len(command) == 2:
 				parkinglot.leave(int(command[1]))
 			elif command[0] == "slot_numbers_for_cars_with_colour" and len(command) == 2:
-				parkinglot.slotNumbersOfCarWithGivenColour(command[1])
+				resultString = parkinglot.slotNumbersOfCarWithGivenColour(command[1])
+				if resultString is None:
+					print("Not found")
+				else:
+					print(resultString)
 			elif command[0] == "registration_numbers_for_cars_with_colour" and len(command) == 2:
-				parkinglot.registrationNumbersOfCarWithGivenColour(command[1])
+				resultString = parkinglot.registrationNumbersOfCarWithGivenColour(command[1])
+				if resultString is None:
+					print("Not found")
+				else:
+					print(resultString)
 			elif command[0] == "slot_number_for_registration_number" and len(command) == 2:
-				parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
+				slotID = parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
+				if slotID is None:
+					print("Not found")
+				else:
+					print(slotID)
 			elif command[0] == "exit" and len(command) == 1:
 				exit(0)
 			else:
