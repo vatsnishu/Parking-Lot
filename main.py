@@ -48,9 +48,9 @@ def main(argv=None):
 			elif command[0] == "slot_number_for_registration_number" and len(command) == 2:
 				slotID = parkinglot.slotNumberCarWithGivenRegistrationNumber(command[1])
 				if slotID is None:
-					print(slotID)
-				else:
 					print("Not found")
+				else:
+					print(slotID)
 			elif command[0] == "exit" and len(command) == 1:
 				exit(0)
 			else:
