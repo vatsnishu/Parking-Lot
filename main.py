@@ -17,9 +17,11 @@ def printHelp():
 
 def main(argv=None):
 	parkinglot = None
-	while(1):
-		inputByUser = raw_input()
-		command = inputByUser.split(' ')
+	f = open("bin/parking_lot file_inputs.txt")
+	inputsFromFile = f.readlines()
+	for inputs in inputsFromFile:
+		inputs = inputs.strip('\n')
+		command = inputs.split(' ')
 		if command[0] == "create_parking_lot" and len(command) == 2:
 			parkinglot = ParkingLot(int(command[1]))
 		elif command[0] == "park" and len(command) == 3:
