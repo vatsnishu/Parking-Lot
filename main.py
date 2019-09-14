@@ -12,7 +12,7 @@ def exceptionOccurred(exception=None):
 	exit(1)
 
 def printHelp():
-	helpString = "\nPlease enter commands in following form:\ncreate_parking_lot $numberOfParkingSlots\npark $carNumber $carColor\nleave $parkingTicketNumber\nstatus\nregistration_numbers_for_cars_with_colour $color\nslot_numbers_for_cars_with_colour $color\nexit"
+	helpString = "\nPlease enter commands in following form:\ncreate_parking_lot $numberOfParkingSlots\npark $carNumber $carColor\nleave $parkingTicketNumber\nstatus\nregistration_numbers_for_cars_with_colour $color\nslot_numbers_for_cars_with_colour $color\nslot_number_for_registration_number $color\nexit"
 	print(helpString)
 
 def main(argv=None):
