@@ -1,3 +1,7 @@
+This app has unit test implemented for each function to ensure nobody messes up with the implementation and causes unwanted outputs to known inputs.
+
+Please use "python tests.py" to run unit tests. Used python TDD for this unit testing implementation.
+
 This app simulates the day to day operations of a parking lot. Given a parking lot with a specific number of parking spots, vehicles will both enter and exit. When entering a vehicle is given the choice of parking spot size (sm, md, lg) depending on the size of the vehicle (sm, md, lg). Vehicles may only park in parking spaces of equal or greater size. Once entered, a ticket is opened and assigned to the vehicle. When the vehicle exits the parking lot, the ticket is closed.
 
 This project is the object-orient solution of the parking lot problem.
