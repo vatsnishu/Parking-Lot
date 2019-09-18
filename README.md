@@ -21,9 +21,13 @@ Cars will both enter and exit. When a car enters my parking lot, I want to have 
 The customer should be allocated a parking slot which is nearest to the entry. At the exit the customer returns the ticket which then marks the slot they were using as being available.
 
 Due to government regulation, the system provides with the ability to find out:
+
 ● Registration numbers of all cars of a particular colour.(registration_numbers_for_cars_with_colour $color)
+
 ● Slot number in which a car with a given registration number is parked.(slot_number_for_registration_number $color)
+
 ● Slot numbers of all slots where a car of a particular colour is parked.(slot_numbers_for_cars_with_colour $color)
+
 
 We interact with the system via a simple set of commands which produce a specific output.
 
